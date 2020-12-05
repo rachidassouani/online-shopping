@@ -38,7 +38,6 @@
 	</head>
 
 	<body>
-	
 		<div class="wrapper">
 		    <!-- Navigation -->
 			<%@include file="./shared/navbar.jsp" %>
@@ -53,15 +52,18 @@
 			   <!-- Loading contact content only if user clicks contact-->
 			   <c:if test="${userClicksContact }">
 					<%@include file="./contact.jsp" %>
-			   </c:if>
-			   
-			   <!-- Loading List Products content only if user clicks List Products-->
-			   
+			   </c:if>		   
 			   
 			   <!-- Loading About content only if user clicks About-->
 			   <c:if test="${userClicksAbout }">
 					<%@include file="./about.jsp" %>
 			   </c:if>
+			   
+			   <!-- Loading List Products content only if user clicks List Products or user clicks List Products by category-->
+			   <c:if test="${userClicksAllProducts or userClicksShowProductsByCategory}">
+					<%@include file="./listProducts.jsp" %>
+			   </c:if>
+			  
 		   </div>
 			<!-- Footer -->
 		    <%@include file="./shared/footer.jsp" %>

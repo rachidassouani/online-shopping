@@ -1,3 +1,4 @@
+<!-- 
 <div class="container">
    <hr>
    <footer>
@@ -9,3 +10,4 @@
        </div>
    </footer>
 </div>
+ -->
