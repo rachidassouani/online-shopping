@@ -22,7 +22,7 @@
 							<label class="control-label col-md-4">Product Name: </label>
 							<div class="col-md-8">
 								<form:input type="text" path="name" id="name" placeholder="Product Name" class="form-control" />
-								<em class="help-block">please enter product name</em>
+								<form:errors path="name" cssClass="help-block"></form:errors >
 							</div>
 						</div>
 						
@@ -30,7 +30,7 @@
 							<label class="control-label col-md-4">Product brand: </label>
 								<div class="col-md-8">
 								<form:input type="text" path="brand" id="brand" placeholder="Product Brand Name" class="form-control" />
-								<em class="help-block">please enter product brand name</em>
+								<form:errors path="brand" cssClass="help-block"></form:errors >
 							</div>
 						</div>
 						
@@ -38,14 +38,14 @@
 							<label class="control-label col-md-4">Product Description: </label>
 								<div class="col-md-8">
 								<form:textarea rows="4" cols="" path="description" id="description" placeholder="Product Description" class="form-control"></form:textarea>
-								<em class="help-block">please enter product Description</em>
+								<form:errors path="description" cssClass="help-block"></form:errors >
 							</div>
 						</div>
 						<div class="form-group">
 							<label class="control-label col-md-4">Product Price: </label>
 								<div class="col-md-8">
-								<form:input type="number" path="price" id="price" placeholder="Product Price" class="form-control" />
-								<em class="help-block">please enter product Price</em>
+								<form:input type="number" path="price" id="price" placeholder="Product Price" class="form-control" />	
+								<form:errors path="price" cssClass="help-block"></form:errors >
 							</div>
 						</div>
 						
@@ -53,7 +53,6 @@
 							<label class="control-label col-md-4">Product Quantity: </label>
 								<div class="col-md-8">
 								<form:input type="number" path="quantity" id="quantity" placeholder="Product Quantity" class="form-control" />
-								<em class="help-block">please enter product Quantity</em>
 							</div>
 						</div>
 						
@@ -64,9 +63,7 @@
 										items="${categories }"
 										itemLabel="name" 
 										itemValue="id"
-										path="categoryId" id="categoryId" class="form-control" />
-									
-								<em class="help-block">please enter product Category</em>
+										path="categoryId" id="categoryId" class="form-control" />		
 							</div>
 						</div>
 						

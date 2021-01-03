@@ -2,10 +2,14 @@ package io.rachidassouani.onlineshopping.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -61,9 +65,13 @@ public class ManagementController {
 	
 	// handler product submission
 	@PostMapping("/products")
-	public String handlerProductSubmission(@ModelAttribute("product") Product product) throws Exception {
+	public String handlerProductSubmission(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) throws Exception {
 		logger.info(product.toString());
-		
+		if(bindingResult.hasErrors()) {
+			model.addAttribute("title", "Manage Products");
+			model.addAttribute("userClicksManageProducts", true);
+			return "page";
+		}
 		productRepository.addProduct(product);
 		return "redirect:/manage/products?operation=product";
 	}
