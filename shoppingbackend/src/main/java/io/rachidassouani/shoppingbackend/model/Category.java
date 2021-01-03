@@ -1,12 +1,35 @@
-package io.rachidassouani.shoppingbackend.dto;
+package io.rachidassouani.shoppingbackend.model;
 
-public class CategoryDto {
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "category")
+public class Category {
+
+	@Id 
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private long id;
+	
+	private String code;
 	private String name;
 	private String description;
+	
+	@Column(name = "image_url")
 	private String imageURL;
+	
+	@Column(name = "is_active")
 	private boolean active = true;
+	
+	public Category() {
+		this.code = "CTR" + UUID.randomUUID().toString().substring(20).toUpperCase();
+	}
 
 	public long getId() {
 		return id;
@@ -46,6 +69,15 @@ public class CategoryDto {
 
 	public void setActive(boolean active) {
 		this.active = active;
-	}	
+	}
 
+	
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
 }

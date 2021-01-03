@@ -20,7 +20,7 @@
 		<!-- Link Back-end project -->
 		<dependency>
 			<groupId>io.rachidassouani</groupId>
-			<artifactId>shoppingbackend</artifactId>
+			<artifactId>ShoppingBackend</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
@@ -32,6 +32,20 @@
 			<scope>provided</scope>
 		</dependency>
 
+
+		<!-- spring-core -->
+		<dependency>
+			<groupId>org.springframework</groupId>
+			<artifactId>spring-core</artifactId>
+			<version>${spring.version}</version>
+			<exclusions>
+				<exclusion>
+					<groupId>commons-logging</groupId>
+					<artifactId>commons-logging</artifactId>
+				</exclusion>	
+			</exclusions>
+		</dependency>
+		
 		<!-- spring-webmvc -->
 		<dependency>
 			<groupId>org.springframework</groupId>
