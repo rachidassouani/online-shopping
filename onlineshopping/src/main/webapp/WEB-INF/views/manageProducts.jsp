@@ -17,7 +17,21 @@
 				</div>
 				<div class="panel-body">
 					<!-- Form element -->
-					<form:form action="${contextRoot }/manage/products" method="post" modelAttribute="product" class="form-horizontal">
+					<form:form 
+							action="${contextRoot }/manage/products" 
+							method="post" 
+							modelAttribute="product" 
+							enctype="multipart/form-data"
+							class="form-horizontal">
+						
+						<div class="form-group">
+							<label class="control-label col-md-4">Select an image: </label>
+							<div class="col-md-8">
+								<form:input type="file" path="file" id="file" class="form-control" />
+								<form:errors path="file" cssClass="help-block"></form:errors >
+							</div>
+						</div>
+							
 						<div class="form-group">
 							<label class="control-label col-md-4">Product Name: </label>
 							<div class="col-md-8">

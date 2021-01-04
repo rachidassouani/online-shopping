@@ -3,6 +3,7 @@ package io.rachidassouani.onlineshopping.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.rachidassouani.onlineshopping.util.FileUploadUtility;
 import io.rachidassouani.shoppingbackend.dao.CategoryRepository;
 import io.rachidassouani.shoppingbackend.dao.ProductRepository;
 import io.rachidassouani.shoppingbackend.model.Category;
@@ -65,7 +67,7 @@ public class ManagementController {
 	
 	// handler product submission
 	@PostMapping("/products")
-	public String handlerProductSubmission(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model) throws Exception {
+	public String handlerProductSubmission(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
 		logger.info(product.toString());
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("title", "Manage Products");
@@ -73,6 +75,11 @@ public class ManagementController {
 			return "page";
 		}
 		productRepository.addProduct(product);
+		
+		// cheack if theres an image or not
+		if (!product.getFile().getOriginalFilename().equals("")) {
+			FileUploadUtility.uploadFile(request, product.getFile(), product.getCode());
+		}
 		return "redirect:/manage/products?operation=product";
 	}
 	
