@@ -21,5 +21,4 @@ public class ProductRestController {
 	public List<Product> findAllProducts() throws Exception {
 		return productRepository.findAllActiveProducts();
 	}
-	
 }

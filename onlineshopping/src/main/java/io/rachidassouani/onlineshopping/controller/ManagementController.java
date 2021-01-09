@@ -3,6 +3,7 @@ package io.rachidassouani.onlineshopping.controller;
 import java.util.List;
 
 import javax.validation.Valid;
+import javax.faces.validator.ValidatorException;
 import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import io.rachidassouani.onlineshopping.util.FileUploadUtility;
+import io.rachidassouani.onlineshopping.validator.ProductValidator;
 import io.rachidassouani.shoppingbackend.dao.CategoryRepository;
 import io.rachidassouani.shoppingbackend.dao.ProductRepository;
 import io.rachidassouani.shoppingbackend.model.Category;
@@ -68,12 +70,17 @@ public class ManagementController {
 	// handler product submission
 	@PostMapping("/products")
 	public String handlerProductSubmission(@Valid @ModelAttribute("product") Product product, BindingResult bindingResult, Model model, HttpServletRequest request) throws Exception {
-		logger.info(product.toString());
+		
+		new ProductValidator().validate(product, bindingResult);
+		
 		if(bindingResult.hasErrors()) {
 			model.addAttribute("title", "Manage Products");
 			model.addAttribute("userClicksManageProducts", true);
 			return "page";
 		}
+		
+		
+		
 		productRepository.addProduct(product);
 		
 		// cheack if theres an image or not
